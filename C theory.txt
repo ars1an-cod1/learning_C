@@ -1,0 +1,165 @@
+types of arrays :
+
+one dimensional: elements are situated in one row 
+
+
+a int[5];
+
+
+multi-dimensional arrays : 
+
+int m[5][4];
+
+m is an array of 3 elements where each element is an array of 4 ints  
+
+
+
+two dimensional: elements are situated 
+
+
+Whats file I/O ? 
+
+To perform file operations you must include the <stdio.h> header 
+
+File I/O refers to reading from and writing to files stored on disk
+
+#include <stdio.h> 
+
+FILE *fp;// file pointer 
+
+
+File oprations overview 
+
+common file operations in C 
+
+Opening  FILE FOPEN()
+
+Closing a file fclose()
+
+
+Return  value 
+
+
+If the file is opened successfully returns a file pointer to it
+
+If the file is not opened then returns NULL 
+
+
+FILE OPERATIONS---
+
+
+FILE* pointer type for an open file 
+fopen("name", "mode" ): opens a file, returns NULL if its fail 
+"r" = read (error if the file does not exist )
+"w" =write (creates file, or deletes old contenent )
+"a"= append , adds to the end (creates the file if its needed )
+fclose(fp): closes file
+
+
+printf vs fprintf 
+
+printf("....") ---> writes to screen 
+fprintf(fp, "..." )----> writes to the file (fp)
+scanf/fscanf work the same way : read from keyboard / from file 
+
+
+FORMAT SIGNS 
+
+%d : integer (int)
+%s : text (string )
+\n: new line 
+%19 [^,]: read max 19 characters, stop at coma 
+
+
+COMMAND LINE ARGUMENTS
+
+Used to send values to the program from the terminal
+int main(int argc, char *argv [])
+argc=number of the arguments 
+argv= the argumensts(as strings)
+argv[0] is always the program name 
+
+
+Example: ./test.exe output2.txt
+
+argc=2
+argv[0]= "./test.exe"
+argv[1]= "output2.txt"
+
+fopen(argv[1], "r") file name comes from terminal no need to compile again for a different line 
+
+
+If we already had data in a file when we open with a 'w' again the old contents is deleted
+
+
+In C language string 
+
+C doesn't have separate string type (not like str in Python)
+A string is a char array that ends with \0
+
+char name []= "Arslan"
+	// in memory: 'A' 'r' 's' 'l' 'a' 'n' \0'
+"string" is idea the type is a char array 
+"\0" means the text ends here 
+
+Thats why %19 leaves 1 free place (for  '\0')
+
+Its just made by single chars 
+
+
+if (argc <2 )
+argc=number of parts in the terminal command 
+
+(the program name also counts )
+
+./args.exe --> argc1 , no filename
+
+./args.exe notes.txt ---> argc=2 file name is there 
+
+argc <2 means the user forgot to file name 
+prinf("Usage ....") ---> shows how to use program 
+return 1 ---> closes to program with an error code 
+
+Without thish check argv[1] is empty and fopen can crash the program
+
+SCAN -F 
+
+scanf ("format" , adress );
+format = what type  to read  (%d ,%s ...)
+address= where to put value 
+
+
+int age;
+scanf(%d, &age); // numbers need to &
+
+char name [50];
+scanf("%49s", name ); // text : no need to & the array is already an address
+
+
+-sprint_f
+ Works like a print f but writes into a string (not the screen)
+ sprintf (dest, "format " , values ...);
+format = "%d ,%s ... like in printf 
+values= the variables for %s and %d 
+char filename[100];
+sprintf(filename "Task1_%s_%d.txt ","Arslan",12345);
+//filename=Task1_Arslan_12345.txt
+
+Nothing shows on the screen , the results only in filename 
+Then you can use is: fopen(filename,"w");
+Not only for file names: It builds any texts from parts
+dest must be big enough, or it overflows 
+
+printf--->screen
+fprintf--->file
+sprintf---> string
+
+
+
+
+
+
+
+
+
+

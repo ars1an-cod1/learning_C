@@ -25,7 +25,9 @@ int main(){
         printf("\n");
 
     }  
-    
+
+     free(arr);
+arr = NULL;
 
     return 0;  
     

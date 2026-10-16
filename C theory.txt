@@ -253,6 +253,9 @@ ASSIGNMENT DIRECTION
 
 - The copy goes into dest. The source is always on the right.
 
+
+//BUNLARIN TEMEL AMACI BELLEK YONETIMIDIR // Boyut esnekligi, Omur kontrolu, Verimlilik 
+
 Stackte dizinin icerigi degisir boyutu degismez 
 int a [5];
 a[0]=42; // olur , eleman degistirebilirsin 
@@ -283,6 +286,125 @@ p=malloc(sizeof(int));// heapten yeni yer
 HENUZ BIR YER GOSTERMEYECEKSEN IYI BIR ALISKANLIK OLARAK BOS BASLAT 
 
 int*p=NULL;
+
+calloc()
+
+Ne kadar integerlik yer acmak istiyorsan o kadar bytelik bir bosluk acar(sadece int degil istedigin data type i kullanabilirsin ) . Acilan her elemanin her biri basta 0 olur. Sonra istedigin degerleri sen verirsin // istedigin kadar acabilirsin.
+
+int *p= calloc(5, sizeof(int)); // heapte 5 tane intlik yer acti
+
+p[0]=10
+printf("%d", p[1])//0
+free(p);
+
+STATIC ARRAY ILE FARKI
+
+int a[5];// static // stack // yazarken sabit 5 // baslangic degeri cop degerler // fonksiyon bitince otomatik silinir// buyutme olmaz
+
+int *p= calloc(5,sizeof(int));// dynamic // heap // baslangic degeri hepsi 0// sen free diyince silinir //buyutme realloc ile  olur
+
+realloc() 
+
+Daha once aldigin bellek boyutunu degistirir, buyutebilir ve kucultebilirde 
+
+p= realloc(p, yeni_boyut_byte ); // 1.parameter eski pointer //2. parameter yeni toplam boyut (eklenecek miktar degil toplam)
+
+ int *p=calloc(5,sizeof(int));// 5 eleman
+p= realloc(p,10*sizeof(int)); // artik toplam 10 eleman 
+
+Bellek yan yana dizilmis kutulardan olusan bir raf. Senin dizinin elemanlari bu rafta yan yana durmak zorunda araya baska bir sey giremez. 
+
+int *p= calloc(5,sizeof(int));// once p
+int *q= calloc(5,sizeof(int));// q buyuk ihtimalle p nin hemen yanina konur 
+p= realloc(p,10*sizeof(int)); //p nin saginda q var uzayamaz --> tasinir 
+
+free() :
+
+freeing memory  // sadece heap icin calisir eger free olarak salmazsan memory leak olur 
+
+while (1){
+
+int*p= malloc(1000*sizeof(int));
+
+// free (p) yok
+
+} // Her Turda 4000 byte aliniyor ama hic geri verilmiyor. Bellek giderek dolar, bilgisayar yavaslar sonunda malloc NULL doner ya da program coker 
+ // her malloc / calloc icin bir free olmali 
+
+
+NULL KONTROLU :
+
+mallocun heapten yer bulup bulamadigini control eder. pointerin onceden bir degiskeni tutup tutmadigiyla ilgisi yoktur
+
+int *arr =malloc(n*sizeof(int));
+if(arr==NULL){
+	printf("Bellek alinamadi\n");
+	return 1;
+} // control yapilmazsa arr[0]=10 gibi bir satir NULL adrese yazmaya calisir ve program coker
+
+// Ayni Kural calloc ve realloc icinde gecerlidir 
+
+int *p= NULL; // sen yazarsin en basta // pointeri bos baslatmak icin yazilir en basta 
+if(arr==NULL) // malloctan hemen sonra // heape yer varmi diye soran sey malloctur
+
+
+Struct Nedir?
+
+Farkli tipteki degiskenlikleri tek bir isim altinda toplayan kendi tanimladigin bir veri tipi 
+
+struct Student{
+	char name[50];
+	int id;
+	float grade;
+}; // ; tanim burada biti demektir C'de her bildirim (decleration) ;  ile biter 
+
+#include <stdio.h>
+
+struct Student{
+
+	char name[50];
+	int id;
+	float grade;
+};
+
+
+int main(){
+	struct Student s1= {"Alice", 1234,6.25};
+	printf("%s %d %.1f\n" , s1.name, s1.id, s1.grade); // %s string %d integer %1.f float ,1 basamak 
+	return 0 ;
+
+}
+
+
+NESTED STRUCTURE
+
+Bir structun icinde baska bir struct alan olarak durabilir
+
+struct Address{
+	char city[30];
+	int zip;
+};
+
+struct Person{
+	char name[30];
+	struct Adress addr; //person'in icinde bir address var 
+
+
+TYPEDEF:
+
+Her seferinde struct Person yasmak yerine sadece Person yazabilmek
+
+typedef struct{
+
+	char name[50];
+	int age;
+} Person;
+
+Person p1={"Eva", 25}; // sadece person // output== Eva is 25 years old 
+
+
+
+
 
 
 

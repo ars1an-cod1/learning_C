@@ -156,6 +156,151 @@ sprintf---> string
 
 
 
+What is a pointer? 
+
+Pointer = a variable that holds an address
+
+int a=3; // a holds 3 
+
+int*p=&a // p holds address of a 
+
+&a--> address of a 
+
+*p--> value at that address
+
+Functions can get the copy of value
+
+Send the address (&a) then the function can change to real a 
+
+
+
+SWAP
+
+A function we write 
+Swaps the values of two variables
+
+before :a=3 ,b=7 
+
+swap(&a,&b);
+
+
+after: a =7,b =3 ;
+
+
+
+MODIFY_VALUE
+
+A function we write 
+Multiplies the value by 2 
+
+before: a=7;
+modifty_value(&a);
+
+after: a =14;
+
+Both get addresses (&a) , so they can change the real variables// Without addresses the function only gets copy, but real variables stays the same 
+
+
+
+VOID
+
+void=nothing
+void before function : it returns no value
+
+int array_main(...) ---> returns a number (return main;)
+void modify_value(returns nothing)
+
+void functions do their job by changing variables through pointers 
+when functions ends ,main continoues from the next line
+int main(void)--> void inside () means "no parameters"
+
+
+my_strlen:count the characters 
+
+Start at index 0 and walk forward. Count each character until you reach"\0" Dont count the "\0" itself.
+
+h e l l o \0 
+1 2 3 4 5 stop--> 5
+
+
+my_strcpy:copy the string
+
+Walk through src one character at a time and put each one into dest at the same index. When  you reach '\0'. Copy it too. Otherwise dest has no end sign
+
+src:h e l l o \0
+
+dest: h e l l o \0 
+
+
+CONST:
+
+const-constant= cannot be changed (read-only)
+
+const int x=5;
+x=10; //ERROR
+
+In parameters it is a promise 
+
+const char *src --> I only read src, I dont change it 
+
+char*dest --> no const because we write into it 
+
+
+ASSIGNMENT DIRECTION
+- = is read from right to left: "take the value on the right, put it on the left"
+
+    dest[i] = src[i];   // take the char from src, put it into dest
+
+- The copy goes into dest. The source is always on the right.
+
+Stackte dizinin icerigi degisir boyutu degismez 
+int a [5];
+a[0]=42; // olur , eleman degistirebilirsin 
+// ama a'yi 10 lu eleman yapamazsin 
+
+int n;
+scanf("%d", &n); // kullanici 7 girdi genelde n integer = 4 byte 
+int *p =malloc(n*sizeof(int)); //7x4=28  
+
+Pointer degeri degil degerin nerede durdugunu tutar. Bellek numarali kutulardan olusan uzun bir sira gibidir. Her kutunun bir adresi vardir, Pointer, bir kutunun numarasini not ettigin kagittir
+
+int x=5;
+int *p =&x; // p, x' in adresini tutar 
+// &-> adresini ver &x ise x in nerede durdugudur 
+//*--> o adresteki degere git *p ile  x in kendisine ulasirsin
+
+printf("%d" , *p);//5
+
+*p=10; // x artik 10 
+
+KUTUYA BIR VARIABLE KOYMADAN CALISMAZ//undefined behaviour 
+
+Pointer kullanmadan once ona gecerli adres vermenin iki yolu var :
+ 
+p=&x;// var olan degiskenin adresi
+p=malloc(sizeof(int));// heapten yeni yer
+
+HENUZ BIR YER GOSTERMEYECEKSEN IYI BIR ALISKANLIK OLARAK BOS BASLAT 
+
+int*p=NULL;
+
+
+
+
+ 
+
+  
+
+ 
+
+
+
+
+
+ 
+
+
+
 
 
 
